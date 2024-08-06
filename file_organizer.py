@@ -43,12 +43,20 @@ def organize_files(base_path,):
                 if not os.path.exists(other_path):
                     os.mkdir(other_path)
                 shutil.move(item_path, os.path.join(other_path, item))
+# 'os.listdir(base_path)' lists all the files in specified directory.
+# 'os.path.isfile(item_path)' checks if the item is a file & not a directory.
+# 'os.path.splitext(item)[1].lower()' gets the file extension in lowercase.
+# The () then iterates through the 'FILE_CATEGORIES' dictionary to
+# -1. Check if the file extension matches any of the extensions in the category, it will
+#     then move the file to the appropriate category directory using 'shutil.move()'.
+# -2. Otherwise it will move the file to the 'Others' directory.
+
 
 # Main function to run the file organizer
 def main():
     base_path = 'C:/Users/username/Downloads' # Replace with your download directory
-    create_directories(base_path, FILE_CATEGORIES)
-    organize_files(base_path)
+    create_directories(base_path, FILE_CATEGORIES) # Create directories for the categories
+    organize_files(base_path) # Move the files into the appropriate directories
     
 if __name__ == '__main__':
     main()
